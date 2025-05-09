@@ -1,8 +1,8 @@
 /html/
-/doc/
-
 
 /**/node_modules
 /**/*.rest
 
 ra16*.zip
+
+/**/public/img/products
