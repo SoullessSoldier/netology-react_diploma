@@ -4,6 +4,7 @@ import CatalogProductCard from "@/components/CatalogProductCard/CatalogProductCa
 
 const TopSales = () => {
   const { topSales, loading } = useSelector((state) => state.topSales);
+
   return (
     <>
       {loading ? (
