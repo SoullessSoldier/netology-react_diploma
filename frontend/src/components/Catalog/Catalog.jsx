@@ -1,8 +1,14 @@
+import CatalogCategories from "./CatalogCategories";
+import CatalogProductsList from "./CatalogProductsList";
+import "./catalog.css";
+
 const Catalog = () => {
   return (
-    <>
-      <h1>This is Catalog</h1>
-    </>
+    <section className="catalog">
+      <h2 className="text-center">Каталог</h2>
+      <CatalogCategories />
+      <CatalogProductsList />
+    </section>
   );
 };
 
