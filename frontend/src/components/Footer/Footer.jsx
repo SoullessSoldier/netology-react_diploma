@@ -10,12 +10,20 @@ const Footer = () => {
             <h5>Информация</h5>
             <ul className="nav flex-column">
               <li className="nav-item">
-                <Link className="nav-link" to="about">
+                <Link
+                  className="nav-link"
+                  to="about"
+                  state={{ internalTransition: true }}
+                >
                   О магазине
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="catalog">
+                <Link
+                  className="nav-link"
+                  to="catalog"
+                  state={{ internalTransition: true }}
+                >
                   Каталог
                 </Link>
               </li>

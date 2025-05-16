@@ -6,11 +6,12 @@ import {
   LOAD_CATEGORIES_SUCCESS,
   LOAD_CATEGORIES_FAILURE,
   SET_CURRENT_CATEGORY,
+  RESET_CATEGORY,
   LOAD_PRODUCTS_REQUEST,
   LOAD_PRODUCTS_FAILURE,
   LOAD_PRODUCTS_SUCCESS,
-  //SET_CURRENT_PRODUCTS_OFFSET,
   RESET_PRODUCTS,
+  UPDATE_SEARCH_STRING,
 } from "./actions";
 
 export function loadTopSalesRequest() {
@@ -41,6 +42,10 @@ export function setCurrentCategory(categoryId) {
   return { type: SET_CURRENT_CATEGORY, payload: categoryId };
 }
 
+export function resetCategory({ categoryId, searchString }) {
+  return { type: RESET_CATEGORY, payload: { categoryId, searchString } };
+}
+
 export function loadProductsRequest(params) {
   return { type: LOAD_PRODUCTS_REQUEST, payload: params };
 }
@@ -52,11 +57,11 @@ export function loadProductsFailure(error) {
 export function loadProductsSuccess(products) {
   return { type: LOAD_PRODUCTS_SUCCESS, payload: products };
 }
-/*
-export function setCurrentProductsOffset(offset) {
-  return { type: SET_CURRENT_PRODUCTS_OFFSET, payload: offset };
+
+export function resetProducts(searchString) {
+  return { type: RESET_PRODUCTS, payload: searchString };
 }
-*/
-export function resetProducts() {
-  return { type: RESET_PRODUCTS };
+
+export function updateSearchString(searchString) {
+  return { type: UPDATE_SEARCH_STRING, payload: searchString };
 }

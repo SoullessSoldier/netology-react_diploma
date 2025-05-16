@@ -1,9 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setCurrentCategory,
-  resetProducts,
-  loadProductsRequest,
-} from "@/actions/actionCreators";
+import { resetCategory } from "@/actions/actionCreators";
 import Preloader from "@/components/Preloader/Preloader";
 import "./catalog.css";
 
@@ -11,13 +7,12 @@ const CatalogCategories = () => {
   const { categories, currentCategory, loading, error } = useSelector(
     (state) => state.categories
   );
+  const { searchString } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   const handleCategoryClick = (event, categoryId) => {
     event.preventDefault();
-    dispatch(setCurrentCategory(categoryId));
-    dispatch(resetProducts());
-    dispatch(loadProductsRequest({ categoryId }));
+    dispatch(resetCategory({ categoryId, searchString, dispatch }));
   };
 
   return (

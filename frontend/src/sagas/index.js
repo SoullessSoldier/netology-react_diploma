@@ -6,11 +6,15 @@ import {
   loadCategoriesFailure,
   loadProductsSuccess,
   loadProductsFailure,
+  setCurrentCategory,
+  resetProducts,
+  loadProductsRequest,
 } from "@/actions/actionCreators";
 import {
   LOAD_TOPSALES_REQUEST,
   LOAD_CATEGORIES_REQUEST,
   LOAD_PRODUCTS_REQUEST,
+  RESET_CATEGORY,
 } from "@/actions/actions";
 import { fetchData } from "@/api/fetchData";
 
@@ -41,10 +45,11 @@ function* handleLoadCategoriesSaga() {
 
 function* handleLoadProductsSaga(action) {
   try {
-    const { categoryId, offset } = action.payload || {};
+    const { categoryId, offset, q } = action.payload || {};
     const params = {};
     if (categoryId && categoryId !== 99999) params.categoryId = categoryId;
     if (offset) params.offset = offset;
+    if (q) params.q = q;
     const result = yield retry(MAX_ATTEMPTS, RETRY_DELAY_MS, fetchData, {
       mode: "products",
       params,
@@ -53,6 +58,14 @@ function* handleLoadProductsSaga(action) {
   } catch (error) {
     yield put(loadProductsFailure(error));
   }
+}
+
+function* handleResetCategorySaga(action) {
+  const { categoryId, searchString } = action.payload;
+
+  yield put(setCurrentCategory(categoryId));
+  yield put(resetProducts(searchString));
+  yield put(loadProductsRequest({ categoryId, q: searchString }));
 }
 
 function* watchLoadTopSalesSaga() {
@@ -67,8 +80,13 @@ function* watchLoadProductsSaga() {
   yield takeLatest(LOAD_PRODUCTS_REQUEST, handleLoadProductsSaga);
 }
 
+function* watchResetCategorySaga() {
+  yield takeLatest(RESET_CATEGORY, handleResetCategorySaga);
+}
+
 export default function* rootSaga() {
   yield spawn(watchLoadTopSalesSaga);
   yield spawn(watchLoadCategoriesSaga);
   yield spawn(watchLoadProductsSaga);
+  yield spawn(watchResetCategorySaga);
 }

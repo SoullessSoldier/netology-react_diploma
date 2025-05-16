@@ -1,20 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import CatalogProductCard from "@/components/CatalogProductCard/CatalogProductCard";
 import Preloader from "@/components/Preloader/Preloader";
+import { loadProductsRequest } from "@/actions/actionCreators";
 import "./catalog.css";
-import { loadProductsRequest } from "../../actions/actionCreators";
 
 const CatalogProductsList = () => {
-  const { products, currentOffset, loading, error, showLoadMore } = useSelector(
-    (state) => state.products
-  );
+  const { products, currentOffset, loading, error, showLoadMore, searchString } =
+    useSelector((state) => state.products);
   const { currentCategory } = useSelector((state) => state.categories);
   const dispatch = useDispatch();
 
   const handleLoadMoreClick = () => {
-    dispatch(
-      loadProductsRequest({ categoryId: currentCategory, offset: currentOffset })
-    );
+    const loadObject = {};
+    loadObject.categoryId = currentCategory;
+    loadObject.offset = currentOffset;
+    if (searchString) {
+      loadObject.q = searchString;
+    }
+    dispatch(loadProductsRequest(loadObject));
   };
 
   return (

@@ -2,8 +2,8 @@ import {
   LOAD_PRODUCTS_FAILURE,
   LOAD_PRODUCTS_REQUEST,
   LOAD_PRODUCTS_SUCCESS,
-  //SET_CURRENT_PRODUCTS_OFFSET,
   RESET_PRODUCTS,
+  UPDATE_SEARCH_STRING,
 } from "@/actions/actions";
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
   loading: false,
   error: null,
   showLoadMore: true,
+  searchString: "",
 };
 
 export default function productsReducer(state = initialState, action) {
@@ -29,10 +30,10 @@ export default function productsReducer(state = initialState, action) {
       };
     case LOAD_PRODUCTS_FAILURE:
       return { ...state, loading: false, error: action.payload };
-    //case SET_CURRENT_PRODUCTS_OFFSET:
-    //  return { ...state, loading: false, currentOffset: action.payload };
     case RESET_PRODUCTS:
-      return { ...initialState };
+      return { ...initialState, searchString: action.payload || "" };
+    case UPDATE_SEARCH_STRING:
+      return { ...state, searchString: action.payload };
     default:
       return state;
   }
