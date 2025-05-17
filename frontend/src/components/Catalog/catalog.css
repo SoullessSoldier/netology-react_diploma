@@ -44,3 +44,10 @@
   outline: none;
   box-shadow: none;
 }
+
+input[type="search" i]:enabled:read-write:-webkit-any(
+    :focus,
+    :hover
+  )::-webkit-search-cancel-button {
+  cursor: pointer;
+}

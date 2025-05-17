@@ -23,6 +23,7 @@ const Catalog = () => {
       dispatch(resetCategory({ categoryId: 99999, searchString, dispatch }));
       dispatch(setNavigateFromHeader(false));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
