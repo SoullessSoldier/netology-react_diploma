@@ -12,6 +12,7 @@ import {
   LOAD_PRODUCTS_SUCCESS,
   RESET_PRODUCTS,
   UPDATE_SEARCH_STRING,
+  SET_NAVIGATE_FROM_HEADER,
 } from "./actions";
 
 export function loadTopSalesRequest() {
@@ -64,4 +65,8 @@ export function resetProducts(searchString) {
 
 export function updateSearchString(searchString) {
   return { type: UPDATE_SEARCH_STRING, payload: searchString };
+}
+
+export function setNavigateFromHeader(flag) {
+  return { type: SET_NAVIGATE_FROM_HEADER, payload: flag };
 }

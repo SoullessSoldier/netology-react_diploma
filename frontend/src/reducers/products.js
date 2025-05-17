@@ -4,6 +4,7 @@ import {
   LOAD_PRODUCTS_SUCCESS,
   RESET_PRODUCTS,
   UPDATE_SEARCH_STRING,
+  SET_NAVIGATE_FROM_HEADER,
 } from "@/actions/actions";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   error: null,
   showLoadMore: true,
   searchString: "",
+  navigateFromHeader: false,
 };
 
 export default function productsReducer(state = initialState, action) {
@@ -34,6 +36,8 @@ export default function productsReducer(state = initialState, action) {
       return { ...initialState, searchString: action.payload || "" };
     case UPDATE_SEARCH_STRING:
       return { ...state, searchString: action.payload };
+    case SET_NAVIGATE_FROM_HEADER:
+      return { ...state, navigateFromHeader: action.payload };
     default:
       return state;
   }

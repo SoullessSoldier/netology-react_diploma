@@ -7,13 +7,13 @@ import {
 import "./catalog.css";
 
 const CatalogSearch = () => {
-  const { currentOffset, searchString } = useSelector((state) => state.products);
+  const { searchString } = useSelector((state) => state.products);
   const { currentCategory } = useSelector((state) => state.categories);
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (searchString.trim().length > 3) {
+    if (searchString.trim().length >= 3) {
       dispatch(resetProducts(searchString));
       dispatch(
         loadProductsRequest({
@@ -31,7 +31,7 @@ const CatalogSearch = () => {
       dispatch(
         loadProductsRequest({
           categoryId: currentCategory,
-          offset: currentOffset,
+          offset: 0,
         })
       );
     }

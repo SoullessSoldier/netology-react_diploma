@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearchString, setNavigateFromHeader } from "@/actions/actionCreators";
 import "./header.css";
@@ -11,22 +11,24 @@ const HeaderSearchWidget = () => {
   const location = useLocation();
   const isShowSearch = location.pathname === "/catalog";
 
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
+  const searchRef = useRef(null);
 
   const handleClickShowSearch = () => {
     if (!showSearch) {
       setShowSearch(!showSearch);
     } else {
-      /* 
-      если длина строки поиска >= 3
-          сделать dispatch(setNavigateFromHeader(true))
-          сделать setShowSearch(!showSearch);
-          сделать dispatch(loadProductsRequest({q:searchString}))
-          сделать navigateToCatalog
-      иначе
-        сделать  dispatch(updateSearchString("")) 
-        сделать setShowSearch(!showSearch);      
-      */
+      if (searchString.length >= 3) {
+        dispatch(setNavigateFromHeader(true));
+        setShowSearch(!showSearch);
+        navigate("/catalog", { state: { internalTransition: true } });
+      } else {
+        dispatch(updateSearchString(""));
+        setShowSearch(!showSearch);
+      }
     }
   };
 
@@ -35,7 +37,9 @@ const HeaderSearchWidget = () => {
     dispatch(updateSearchString(target.value.trim()));
   };
 
-  const searchRef = useRef(null);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
   useEffect(() => {
     if (showSearch) {
@@ -57,6 +61,7 @@ const HeaderSearchWidget = () => {
           ></div>
           <form
             className={`header-controls-search-form form-inline ${showSearch ? "" : "invisible"}`}
+            onSubmit={handleSubmit}
           >
             <input
               ref={searchRef}

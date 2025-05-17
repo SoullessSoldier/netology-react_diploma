@@ -40,6 +40,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? " nav-link active" : "nav-link"
                     }
+                    state={{ internalTransition: true }}
                   >
                     О магазине
                   </NavLink>
@@ -50,6 +51,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? " nav-link active" : "nav-link"
                     }
+                    state={{ internalTransition: true }}
                   >
                     Контакты
                   </NavLink>
