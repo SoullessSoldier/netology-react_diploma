@@ -6,3 +6,8 @@
 ra16*.zip
 
 /**/public/img/products
+
+/**/.env
+/**/.env.production
+/**/.env.development
+

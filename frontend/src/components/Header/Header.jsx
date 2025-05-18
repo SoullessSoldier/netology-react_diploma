@@ -1,26 +1,7 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import HeaderSearchWidget from "./HeaderSearchWidget";
 import "./header.css";
-import { useEffect, useRef, useState } from "react";
-
 const Header = () => {
-  const [showSearch, setShowSearch] = useState(false);
-  const searchRef = useRef(null);
-  const location = useLocation();
-
-  const handleClickShowSearch = () => {
-    setShowSearch(!showSearch);
-  };
-
-  useEffect(() => {
-    if (showSearch) {
-      searchRef.current.focus();
-    }
-  }, [showSearch]);
-
-  useEffect(() => {
-    setShowSearch(false);
-  }, [location]);
-
   return (
     <header className="container">
       <div className="row">
@@ -37,6 +18,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? " nav-link active" : "nav-link"
                     }
+                    state={{ internalTransition: true }}
                   >
                     Главная
                   </NavLink>
@@ -47,6 +29,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? " nav-link active" : "nav-link"
                     }
+                    state={{ internalTransition: true }}
                   >
                     Каталог
                   </NavLink>
@@ -57,6 +40,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? " nav-link active" : "nav-link"
                     }
+                    state={{ internalTransition: true }}
                   >
                     О магазине
                   </NavLink>
@@ -67,6 +51,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? " nav-link active" : "nav-link"
                     }
+                    state={{ internalTransition: true }}
                   >
                     Контакты
                   </NavLink>
@@ -74,10 +59,7 @@ const Header = () => {
               </ul>
               <div>
                 <div className="header-controls-pics">
-                  <div
-                    className="header-controls-pic header-controls-search"
-                    onClick={handleClickShowSearch}
-                  ></div>
+                  <HeaderSearchWidget />
                   <Link to="/cart">
                     <div className="header-controls-pic header-controls-cart">
                       <div className="header-controls-cart-full">1</div>
@@ -85,15 +67,6 @@ const Header = () => {
                     </div>
                   </Link>
                 </div>
-                <form
-                  className={`header-controls-search-form form-inline ${showSearch ? "" : "invisible"}`}
-                >
-                  <input
-                    ref={searchRef}
-                    className="form-control"
-                    placeholder="Поиск"
-                  />
-                </form>
               </div>
             </div>
           </nav>

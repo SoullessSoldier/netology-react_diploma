@@ -1,9 +1,11 @@
-import Preloader from "@/components/Preloader/Preloader";
+import TopSales from "@/components/TopSales/TopSales";
+import Catalog from "@/components/Catalog/Catalog";
 
 const Home = () => {
   return (
     <>
-      <Preloader />
+      <TopSales />
+      <Catalog />
     </>
   );
 };
