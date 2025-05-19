@@ -1,8 +1,11 @@
+import CartProvider from "./CartProvider";
+import CartTable from "./CartTable";
+
 const Cart = () => {
   return (
-    <>
-      <h1>This is Cart</h1>
-    </>
+    <CartProvider>
+      <CartTable />
+    </CartProvider>
   );
 };
 

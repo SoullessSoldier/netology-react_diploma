@@ -16,6 +16,10 @@ import {
   LOAD_PRODUCTITEM_FAILURE,
   LOAD_PRODUCTITEM_REQUEST,
   LOAD_PRODUCTITEM_SUCCESS,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CLEAR_CART,
+  RESTORE_CART_FROM_STORAGE,
 } from "./actions";
 
 export function loadTopSalesRequest() {
@@ -84,4 +88,20 @@ export function loadProductItemFailure(error) {
 
 export function loadProductItemSuccess(productItem) {
   return { type: LOAD_PRODUCTITEM_SUCCESS, payload: productItem };
+}
+
+export function addToCart(item) {
+  return { type: ADD_TO_CART, payload: item };
+}
+
+export function removeFromCart(item) {
+  return { type: REMOVE_FROM_CART, payload: item };
+}
+
+export function clearCart() {
+  return { type: CLEAR_CART };
+}
+
+export function restoreCartFromStorage(cartItems) {
+  return { type: RESTORE_CART_FROM_STORAGE, payload: cartItems };
 }

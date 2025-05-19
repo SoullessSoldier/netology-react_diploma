@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Preloader from "@/components/Preloader/Preloader";
-import { loadProductItemRequest } from "@/actions/actionCreators";
+import { addToCart, loadProductItemRequest } from "@/actions/actionCreators";
+import { writeToLocalStorage } from "@/utils/helperLocalStorage";
 import "./catalog.css";
 
 const CatalogProductCard = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [counter, setCounter] = useState(1);
   const { productItem, loading, error } = useSelector((state) => state.productItem);
+  const cartItems = useSelector((state) => state.cart.cartItems);
   const {
     color,
     images,
@@ -19,10 +21,12 @@ const CatalogProductCard = () => {
     sizes,
     sku,
     title,
+    price,
   } = productItem;
 
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSizeClick = (index) => {
     if (index === selectedItem) {
@@ -45,6 +49,19 @@ const CatalogProductCard = () => {
         }
         break;
     }
+  };
+
+  const handleAddToCart = () => {
+    const item = {
+      id,
+      title,
+      quantity: counter,
+      price: price,
+      size: sizes[selectedItem].size,
+    };
+    dispatch(addToCart(item));
+    writeToLocalStorage([...cartItems, item]);
+    navigate("/cart");
   };
 
   const showOrderBtn = () => {
@@ -143,7 +160,10 @@ const CatalogProductCard = () => {
                 )}
               </div>
               {showOrderBtn() && (
-                <button className="btn btn-danger btn-block btn-lg">
+                <button
+                  className="btn btn-danger btn-block btn-lg"
+                  onClick={handleAddToCart}
+                >
                   В корзину
                 </button>
               )}

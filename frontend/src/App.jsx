@@ -14,11 +14,13 @@ import {
   loadCategoriesRequest,
   loadProductsRequest,
 } from "@/actions/actionCreators";
-
+import useRestoreCart from "@/hooks/useRestoreCart";
 import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
+
+  useRestoreCart();
 
   useEffect(() => {
     // Производим загрузку данных один раз при загрузке приложения
