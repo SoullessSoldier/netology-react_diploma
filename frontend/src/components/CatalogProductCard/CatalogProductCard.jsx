@@ -11,7 +11,10 @@ const CatalogProductCard = ({ productData }) => {
         <div className="card-body d-flex flex-column">
           <p className="card-text flex-grow-1">{title}</p>
           <p className="card-text">{price}₽</p>
-          <Link to={`/catalog/${id}`} className="btn btn-outline-primary card-link">
+          <Link
+            to={`/catalog/${id}.html`}
+            className="btn btn-outline-primary card-link"
+          >
             Заказать
           </Link>
         </div>
