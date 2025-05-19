@@ -17,6 +17,9 @@ export const fetchData = async ({ mode = "", params = null }) => {
       case "products":
         url = itemsUrl;
         break;
+      case "productItem":
+        url = `${itemsUrl}/${params.productId}`;
+        break;
       default:
         url = "";
     }
@@ -26,7 +29,7 @@ export const fetchData = async ({ mode = "", params = null }) => {
       timeout: TIMEOUT_MS,
     };
 
-    if (params) {
+    if (mode !== "productItem" && params) {
       config.params = { ...params };
     }
 

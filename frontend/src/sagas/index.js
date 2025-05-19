@@ -9,12 +9,15 @@ import {
   setCurrentCategory,
   resetProducts,
   loadProductsRequest,
+  loadProductItemSuccess,
+  loadProductItemFailure,
 } from "@/actions/actionCreators";
 import {
   LOAD_TOPSALES_REQUEST,
   LOAD_CATEGORIES_REQUEST,
   LOAD_PRODUCTS_REQUEST,
   RESET_CATEGORY,
+  LOAD_PRODUCTITEM_REQUEST,
 } from "@/actions/actions";
 import { fetchData } from "@/api/fetchData";
 
@@ -68,6 +71,25 @@ function* handleResetCategorySaga(action) {
   yield put(loadProductsRequest({ categoryId, q: searchString }));
 }
 
+function* handleLoadProductItemSaga(action) {
+  try {
+    const { productId } = action.payload || null;
+    if (Number.isInteger(parseInt(productId))) {
+      const params = {};
+      if (productId) params.productId = productId;
+      const result = yield retry(MAX_ATTEMPTS, RETRY_DELAY_MS, fetchData, {
+        mode: "productItem",
+        params,
+      });
+      yield put(loadProductItemSuccess(result));
+    } else {
+      throw new Error("Product's id is not a number!");
+    }
+  } catch (error) {
+    yield put(loadProductItemFailure(error));
+  }
+}
+
 function* watchLoadTopSalesSaga() {
   yield takeLatest(LOAD_TOPSALES_REQUEST, handleLoadTopSalesSaga);
 }
@@ -84,9 +106,14 @@ function* watchResetCategorySaga() {
   yield takeLatest(RESET_CATEGORY, handleResetCategorySaga);
 }
 
+function* watchLoadProductItemSaga() {
+  yield takeLatest(LOAD_PRODUCTITEM_REQUEST, handleLoadProductItemSaga);
+}
+
 export default function* rootSaga() {
   yield spawn(watchLoadTopSalesSaga);
   yield spawn(watchLoadCategoriesSaga);
   yield spawn(watchLoadProductsSaga);
   yield spawn(watchResetCategorySaga);
+  yield spawn(watchLoadProductItemSaga);
 }

@@ -8,7 +8,7 @@ import About from "@/components/About/About";
 import Cart from "@/components/Cart/Cart";
 import Catalog from "@/components/Catalog/Catalog";
 import Contacts from "@/components/Contacts/Contacts";
-import ProductCard from "@/components/ProductCard/ProductCard";
+import CatalogProductCard from "@/components/Catalog/CatalogProductCard";
 import {
   loadTopSalesRequest,
   loadCategoriesRequest,
@@ -35,8 +35,8 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="cart" element={<Cart />} />
           <Route path="catalog" element={<Catalog />} />
+          <Route path="catalog/:id" element={<CatalogProductCard />} />
           <Route path="contacts" element={<Contacts />} />
-          <Route path="products/:id" element={<ProductCard />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

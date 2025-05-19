@@ -13,6 +13,9 @@ import {
   RESET_PRODUCTS,
   UPDATE_SEARCH_STRING,
   SET_NAVIGATE_FROM_HEADER,
+  LOAD_PRODUCTITEM_FAILURE,
+  LOAD_PRODUCTITEM_REQUEST,
+  LOAD_PRODUCTITEM_SUCCESS,
 } from "./actions";
 
 export function loadTopSalesRequest() {
@@ -69,4 +72,16 @@ export function updateSearchString(searchString) {
 
 export function setNavigateFromHeader(flag) {
   return { type: SET_NAVIGATE_FROM_HEADER, payload: flag };
+}
+
+export function loadProductItemRequest({ productId }) {
+  return { type: LOAD_PRODUCTITEM_REQUEST, payload: { productId } };
+}
+
+export function loadProductItemFailure(error) {
+  return { type: LOAD_PRODUCTITEM_FAILURE, payload: error.message };
+}
+
+export function loadProductItemSuccess(productItem) {
+  return { type: LOAD_PRODUCTITEM_SUCCESS, payload: productItem };
 }
