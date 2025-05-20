@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 
 const HeaderCartWidget = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const cartCount = cartItems ? cartItems?.length : 0;
+  const cartCount = cartItems
+    ? cartItems?.reduce((acc, curr) => acc + curr.quantity, 0)
+    : 0;
 
   return (
     <Link to="/cart">
