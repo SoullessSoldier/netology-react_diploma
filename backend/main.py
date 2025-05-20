@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from numbers import Number
 import os
 import time
 import json
@@ -90,18 +91,18 @@ def create_order():
         # Проверяем структуру списка продуктов
         if isinstance(data["items"], list) and len(data["items"]) > 0:
             for product in data["items"]:
-                assert isinstance(product["id"], int) and product["id"] > 0
-                assert isinstance(product["price"], float) and product["price"] > 0
-                assert isinstance(product["count"], int) and product["count"] > 0
+                assert isinstance(product["id"], int) and product["id"] > 0, "Bad id value"                
+                assert isinstance(product["price"], Number) and product["price"] > 0, "Bad price value"
+                assert isinstance(product["count"], int) and product["count"] > 0, "Bad count value"
             
             # Заказ успешно проверен, возврат пустого тела и статуса 204
             return delayed_response(status=204)
         else:
             raise ValueError("Invalid order structure.")
     except Exception as e:
-        print(e)
+        print(type(e))
         return delayed_response({"message": f"Bad Request: {str(e)}"}, 400)
 
 if __name__ == "__main__":
-    PORT = int(os.environ.get("PORT", 443))
+    PORT = int(os.environ.get("PORT", 8443))
     app.run(host="0.0.0.0", port=PORT)
