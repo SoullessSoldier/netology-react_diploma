@@ -7,7 +7,14 @@ const CatalogProductCard = ({ productData }) => {
   return (
     <div className="col-4 d-flex">
       <div className="card w-100 h-100">
-        <img src={images[0]} className="card-img-top img-fluid" alt={title} />
+        <div className="catalog-product-card-img-wrapper">
+          <img
+            src={images[0]}
+            className="card-img-top catalog-product-card-img"
+            alt={title}
+          />
+        </div>
+
         <div className="card-body d-flex flex-column">
           <p className="card-text flex-grow-1">{title}</p>
           <p className="card-text">{price}₽</p>

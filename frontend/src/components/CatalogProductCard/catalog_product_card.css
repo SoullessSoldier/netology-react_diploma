@@ -1,5 +1,9 @@
-.card-img-top.img-fluid {
-  min-height: 464.22px;
+.catalog-product-card-img-wrapper {
+  min-height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .card-link {
   width: fit-content;
