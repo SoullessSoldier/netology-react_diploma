@@ -32,6 +32,11 @@ const Footer = () => {
                   Контакты
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="personal-policy">
+                  Политика обработки персональных данных
+                </Link>
+              </li>
             </ul>
           </section>
         </div>

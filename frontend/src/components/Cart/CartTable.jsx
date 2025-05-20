@@ -8,9 +8,6 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const calcItemTotalPrice = (price, quantity) => {
-    /*const conditionPrice = !Number.isNaN(parseFloat(price));
-    const conditionQuantity = Number.isInteger(parseInt(quantity));
-    return conditionPrice && conditionQuantity ? price * quantity : 0;*/
     return price * quantity;
   };
 
@@ -86,7 +83,15 @@ const Cart = () => {
           <form className="card-body" onSubmit={(e) => e.preventDefault()}>
             <div className="form-group">
               <label htmlFor="phone">Телефон</label>
-              <input className="form-control" id="phone" placeholder="Ваш телефон" />
+              <input
+                className="form-control"
+                id="phone"
+                placeholder="Ваш телефон"
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                title="Номер телефона в формате 999-111-22-33"
+                required
+              />
             </div>
             <div className="form-group">
               <label htmlFor="address">Адрес доставки</label>
@@ -94,12 +99,22 @@ const Cart = () => {
                 className="form-control"
                 id="address"
                 placeholder="Адрес доставки"
+                type="address"
+                required
               />
             </div>
             <div className="form-group form-check">
-              <input type="checkbox" className="form-check-input" id="agreement" />
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="agreement"
+                required
+              />
               <label className="form-check-label" htmlFor="agreement">
-                Согласен с правилами доставки
+                Согласен с <a href="#">Правилами доставки</a> и{" "}
+                <Link to="personal-policy">
+                  Политикой обработки персональных данных
+                </Link>
               </label>
             </div>
             <button type="submit" className="btn btn-outline-secondary">

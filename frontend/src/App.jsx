@@ -9,6 +9,7 @@ import Cart from "@/components/Cart/Cart";
 import Catalog from "@/components/Catalog/Catalog";
 import Contacts from "@/components/Contacts/Contacts";
 import CatalogProductCard from "@/components/Catalog/CatalogProductCard";
+import PersonalDataPolicy from "@/components/PersonalDataPolicy/PersonalDataPolicy";
 import {
   loadTopSalesRequest,
   loadCategoriesRequest,
@@ -39,6 +40,7 @@ function App() {
           <Route path="catalog" element={<Catalog />} />
           <Route path="catalog/:id.html" element={<CatalogProductCard />} />
           <Route path="contacts" element={<Contacts />} />
+          <Route path="personal-policy" element={<PersonalDataPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
