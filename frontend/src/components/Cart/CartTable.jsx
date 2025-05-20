@@ -26,7 +26,6 @@ const Cart = () => {
 
   const handleRemoveFromCart = (item) => {
     dispatch(removeFromCart(item));
-    writeToLocalStorage(cartItems.filter((cartItem) => cartItem.id !== item.id));
   };
 
   const handleClearCart = () => {

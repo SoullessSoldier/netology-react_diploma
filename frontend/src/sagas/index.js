@@ -1,4 +1,11 @@
-import { put, spawn, takeLatest, retry } from "redux-saga/effects";
+import {
+  put,
+  spawn,
+  takeLatest,
+  retry,
+  select,
+  takeEvery,
+} from "redux-saga/effects";
 import {
   loadTopSalesSuccess,
   loadTopSalesFailure,
@@ -18,8 +25,12 @@ import {
   LOAD_PRODUCTS_REQUEST,
   RESET_CATEGORY,
   LOAD_PRODUCTITEM_REQUEST,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CLEAR_CART,
 } from "@/actions/actions";
 import { fetchData } from "@/api/fetchData";
+import { writeToLocalStorage } from "@/utils/helperLocalStorage";
 
 const MAX_ATTEMPTS = parseInt(import.meta.env.VITE_REQUEST_MAX_ATTEMPTS) || 3;
 const RETRY_DELAY_MS = parseInt(import.meta.env.VITE_RETRY_DELAY_MS) || 3000;
@@ -90,6 +101,24 @@ function* handleLoadProductItemSaga(action) {
   }
 }
 
+function* handleSyncCartToLocalStorage(action) {
+  const { type } = action;
+
+  switch (type) {
+    case ADD_TO_CART:
+    case REMOVE_FROM_CART:
+      // eslint-disable-next-line no-case-declarations
+      const cartItems = yield select((state) => state.cart.cartItems);
+      writeToLocalStorage(cartItems);
+      break;
+    case CLEAR_CART:
+      writeToLocalStorage([]);
+      break;
+    default:
+      break;
+  }
+}
+
 function* watchLoadTopSalesSaga() {
   yield takeLatest(LOAD_TOPSALES_REQUEST, handleLoadTopSalesSaga);
 }
@@ -110,10 +139,18 @@ function* watchLoadProductItemSaga() {
   yield takeLatest(LOAD_PRODUCTITEM_REQUEST, handleLoadProductItemSaga);
 }
 
+function* watchCartSaga() {
+  yield takeEvery(
+    [ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART],
+    handleSyncCartToLocalStorage
+  );
+}
+
 export default function* rootSaga() {
   yield spawn(watchLoadTopSalesSaga);
   yield spawn(watchLoadCategoriesSaga);
   yield spawn(watchLoadProductsSaga);
   yield spawn(watchResetCategorySaga);
   yield spawn(watchLoadProductItemSaga);
+  yield spawn(watchCartSaga);
 }

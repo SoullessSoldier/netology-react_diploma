@@ -22,7 +22,11 @@ export default function cartReducer(state = initialState, action) {
       );
       if (existingItemIndex > -1) {
         const updatedCartItems = [...state.cartItems];
-        updatedCartItems[existingItemIndex].quantity += quantity;
+        updatedCartItems[existingItemIndex] = {
+          ...updatedCartItems[existingItemIndex],
+          quantity: updatedCartItems[existingItemIndex].quantity + quantity,
+        };
+
         return { ...state, cartItems: updatedCartItems };
       } else {
         return { ...state, cartItems: [...state.cartItems, action.payload] };

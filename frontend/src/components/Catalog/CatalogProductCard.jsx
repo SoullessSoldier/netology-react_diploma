@@ -60,7 +60,6 @@ const CatalogProductCard = () => {
       size: sizes[selectedItem].size,
     };
     dispatch(addToCart(item));
-    writeToLocalStorage([...cartItems, item]);
     navigate("/cart");
   };
 
