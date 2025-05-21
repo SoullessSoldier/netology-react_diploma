@@ -6,8 +6,8 @@ import json
 from flask_cors import CORS
 
 # Загружаем данные из файлов
-categories = json.load(open("data/categories.json"))
-items = json.load(open("data/products.json"))
+categories = json.load(open("data/categories.json", encoding="utf8"))
+items = json.load(open("data/products.json", encoding="utf8"))
 top_sale_ids = [66, 65, 73]
 more_count = 6
 
