@@ -5,6 +5,7 @@ import watchLoadTopSalesSaga from "./topSalesSaga";
 import { watchLoadCategoriesSaga, watchResetCategorySaga } from "./categoriesSaga";
 import watchLoadProductsSaga from "./productsSaga";
 import watchLoadProductItemSaga from "./productItemSaga";
+import watchSendOrderSaga from "./orderSaga";
 
 export default function* rootSaga() {
   yield spawn(watchLoadTopSalesSaga);
@@ -13,4 +14,5 @@ export default function* rootSaga() {
   yield spawn(watchResetCategorySaga);
   yield spawn(watchLoadProductItemSaga);
   yield spawn(watchCartSaga);
+  yield spawn(watchSendOrderSaga);
 }

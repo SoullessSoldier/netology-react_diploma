@@ -20,6 +20,10 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   RESTORE_CART_FROM_STORAGE,
+  SEND_ORDER_REQUEST,
+  SEND_ORDER_FAILURE,
+  SEND_ORDER_SUCCESS,
+  RESET_ORDER,
 } from "./actions";
 
 export function loadTopSalesRequest() {
@@ -104,4 +108,20 @@ export function clearCart() {
 
 export function restoreCartFromStorage(cartItems) {
   return { type: RESTORE_CART_FROM_STORAGE, payload: cartItems };
+}
+
+export function sendOrderRequest(data) {
+  return { type: SEND_ORDER_REQUEST, payload: data };
+}
+
+export function sendOrderFailure(error) {
+  return { type: SEND_ORDER_FAILURE, payload: error.message };
+}
+
+export function sendOrderSuccess(response) {
+  return { type: SEND_ORDER_SUCCESS, payload: response };
+}
+
+export function resetOrder() {
+  return { type: RESET_ORDER };
 }

@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Preloader from "@/components/Preloader/Preloader";
 import { addToCart, loadProductItemRequest } from "@/actions/actionCreators";
-import { writeToLocalStorage } from "@/utils/helperLocalStorage";
 import "./catalog.css";
 
 const CatalogProductCard = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [counter, setCounter] = useState(1);
-  const { productItem, loading, error } = useSelector((state) => state.productItem);
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const { productItem, loading } = useSelector((state) => state.productItem);
+
   const {
     color,
     images,
@@ -53,7 +52,7 @@ const CatalogProductCard = () => {
 
   const handleAddToCart = () => {
     const item = {
-      id,
+      id: parseInt(id),
       title,
       quantity: counter,
       price: price,

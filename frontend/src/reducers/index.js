@@ -4,6 +4,7 @@ import categoriesReducer from "./categories";
 import productsReducer from "./products";
 import productItemReducer from "./productItem";
 import cartReducer from "./cart";
+import orderReducer from "./order";
 
 const rootReducer = combineReducers({
   topSales: topSalesReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   products: productsReducer,
   productItem: productItemReducer,
   cart: cartReducer,
+  order: orderReducer,
 });
 
 export default rootReducer;

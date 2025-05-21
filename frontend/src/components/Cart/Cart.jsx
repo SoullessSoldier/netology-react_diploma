@@ -1,11 +1,12 @@
-import CartProvider from "./CartProvider";
+import CartOrder from "./CartOrder";
 import CartTable from "./CartTable";
 
 const Cart = () => {
   return (
-    <CartProvider>
+    <>
       <CartTable />
-    </CartProvider>
+      <CartOrder />
+    </>
   );
 };
 
