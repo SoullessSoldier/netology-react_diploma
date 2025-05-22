@@ -22,7 +22,7 @@ mkvirtualenv myvirtualenv --python=/usr/bin/python3.10
 3) в виртуальном окружении установить пакеты Flask и Flask-CORS  
 ```sh
 pip install Flask
-pip install CORS
+pip install flask-cors
 ```
 
 4) создать web-приложение, следовать подсказкам мастера создания, выбрать фреймворк Flask и созданное окружение, настроить каталоги.  

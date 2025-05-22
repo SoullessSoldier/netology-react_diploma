@@ -18,6 +18,8 @@
 .catalog-item-size {
   display: inline-block;
   padding: 0 10px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .catalog-item-size.selected {

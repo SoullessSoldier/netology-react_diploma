@@ -8,17 +8,20 @@ import About from "@/components/About/About";
 import Cart from "@/components/Cart/Cart";
 import Catalog from "@/components/Catalog/Catalog";
 import Contacts from "@/components/Contacts/Contacts";
-import ProductCard from "@/components/ProductCard/ProductCard";
+import CatalogProductCard from "@/components/Catalog/CatalogProductCard";
+import PersonalDataPolicy from "@/components/PersonalDataPolicy/PersonalDataPolicy";
 import {
   loadTopSalesRequest,
   loadCategoriesRequest,
   loadProductsRequest,
 } from "@/actions/actionCreators";
-
+import useRestoreCart from "@/hooks/useRestoreCart";
 import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
+
+  useRestoreCart();
 
   useEffect(() => {
     // Производим загрузку данных один раз при загрузке приложения
@@ -35,8 +38,9 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="cart" element={<Cart />} />
           <Route path="catalog" element={<Catalog />} />
+          <Route path="catalog/:id.html" element={<CatalogProductCard />} />
           <Route path="contacts" element={<Contacts />} />
-          <Route path="products/:id" element={<ProductCard />} />
+          <Route path="personal-policy" element={<PersonalDataPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

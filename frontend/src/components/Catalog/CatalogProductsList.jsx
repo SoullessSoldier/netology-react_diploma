@@ -23,10 +23,11 @@ const CatalogProductsList = () => {
   return (
     <>
       <div className="row mb-3 catalog-wrapper">
-        {products.length > 0 &&
-          products.map((productsItem) => (
-            <CatalogProductCard key={productsItem.id} productData={productsItem} />
-          ))}
+        {products.length > 0
+          ? products.map((productsItem) => (
+              <CatalogProductCard key={productsItem.id} productData={productsItem} />
+            ))
+          : !loading && <h4 className="text-center w-100">Нет данных</h4>}
       </div>
       {loading ? (
         <Preloader />

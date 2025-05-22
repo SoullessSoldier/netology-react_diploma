@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   loadProductsRequest,
   resetProducts,
+  resetCategory,
   updateSearchString,
 } from "@/actions/actionCreators";
+import { ALL_CATEGORY_ID } from "@/config/configParams";
 import "./catalog.css";
 
 const CatalogSearch = () => {
@@ -16,9 +18,7 @@ const CatalogSearch = () => {
     if (searchString.trim().length >= 3) {
       dispatch(resetProducts(searchString));
       dispatch(
-        loadProductsRequest({
-          q: searchString,
-        })
+        resetCategory({ categoryId: ALL_CATEGORY_ID, searchString, dispatch })
       );
     }
   };

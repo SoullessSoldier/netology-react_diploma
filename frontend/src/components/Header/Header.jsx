@@ -1,5 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import HeaderSearchWidget from "./HeaderSearchWidget";
+import HeaderCartWidget from "./HeaderCartWidget";
 import "./header.css";
 const Header = () => {
   return (
@@ -60,12 +61,7 @@ const Header = () => {
               <div>
                 <div className="header-controls-pics">
                   <HeaderSearchWidget />
-                  <Link to="/cart">
-                    <div className="header-controls-pic header-controls-cart">
-                      <div className="header-controls-cart-full">1</div>
-                      <div className="header-controls-cart-menu"></div>
-                    </div>
-                  </Link>
+                  <HeaderCartWidget />
                 </div>
               </div>
             </div>

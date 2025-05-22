@@ -13,6 +13,17 @@ import {
   RESET_PRODUCTS,
   UPDATE_SEARCH_STRING,
   SET_NAVIGATE_FROM_HEADER,
+  LOAD_PRODUCTITEM_FAILURE,
+  LOAD_PRODUCTITEM_REQUEST,
+  LOAD_PRODUCTITEM_SUCCESS,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CLEAR_CART,
+  RESTORE_CART_FROM_STORAGE,
+  SEND_ORDER_REQUEST,
+  SEND_ORDER_FAILURE,
+  SEND_ORDER_SUCCESS,
+  RESET_ORDER,
 } from "./actions";
 
 export function loadTopSalesRequest() {
@@ -69,4 +80,48 @@ export function updateSearchString(searchString) {
 
 export function setNavigateFromHeader(flag) {
   return { type: SET_NAVIGATE_FROM_HEADER, payload: flag };
+}
+
+export function loadProductItemRequest({ productId }) {
+  return { type: LOAD_PRODUCTITEM_REQUEST, payload: { productId } };
+}
+
+export function loadProductItemFailure(error) {
+  return { type: LOAD_PRODUCTITEM_FAILURE, payload: error.message };
+}
+
+export function loadProductItemSuccess(productItem) {
+  return { type: LOAD_PRODUCTITEM_SUCCESS, payload: productItem };
+}
+
+export function addToCart(item) {
+  return { type: ADD_TO_CART, payload: item };
+}
+
+export function removeFromCart(item) {
+  return { type: REMOVE_FROM_CART, payload: item };
+}
+
+export function clearCart() {
+  return { type: CLEAR_CART };
+}
+
+export function restoreCartFromStorage(cartItems) {
+  return { type: RESTORE_CART_FROM_STORAGE, payload: cartItems };
+}
+
+export function sendOrderRequest(data) {
+  return { type: SEND_ORDER_REQUEST, payload: data };
+}
+
+export function sendOrderFailure(error) {
+  return { type: SEND_ORDER_FAILURE, payload: error.message };
+}
+
+export function sendOrderSuccess(response) {
+  return { type: SEND_ORDER_SUCCESS, payload: response };
+}
+
+export function resetOrder() {
+  return { type: RESET_ORDER };
 }

@@ -1,10 +1,16 @@
 import axios from "axios";
-import { BASE_URL, topSalesUrl, categoriesUrl, itemsUrl } from "@/backend_urls";
+import {
+  BASE_URL,
+  topSalesUrl,
+  categoriesUrl,
+  itemsUrl,
+  orderUrl,
+} from "@/backend_urls";
 
 const TIMEOUT_MS = parseInt(import.meta.env.VITE_REQUEST_TIMEOUT_MS) || 10000;
 
 // Функция запроса к API с использованием Axios
-export const fetchData = async ({ mode = "", params = null }) => {
+export const fetchData = async ({ mode = "", params = null, body = null }) => {
   try {
     let url = "";
     switch (mode) {
@@ -17,6 +23,12 @@ export const fetchData = async ({ mode = "", params = null }) => {
       case "products":
         url = itemsUrl;
         break;
+      case "productItem":
+        url = `${itemsUrl}/${params.productId}`;
+        break;
+      case "order":
+        url = orderUrl;
+        break;
       default:
         url = "";
     }
@@ -26,12 +38,18 @@ export const fetchData = async ({ mode = "", params = null }) => {
       timeout: TIMEOUT_MS,
     };
 
-    if (params) {
+    if (mode !== "productItem" && params) {
       config.params = { ...params };
     }
 
     if (url) {
-      const response = await axios.get(url, config);
+      let response;
+      if (mode !== "order") {
+        response = await axios.get(url, config);
+      } else {
+        const data = { ...body };
+        response = await axios.post(url, data, config);
+      }
 
       if (response.status >= 400) {
         throw new Error(`HTTP Error: ${response.status}`);

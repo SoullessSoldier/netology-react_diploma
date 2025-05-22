@@ -1,7 +1,11 @@
+import CartOrder from "./CartOrder";
+import CartTable from "./CartTable";
+
 const Cart = () => {
   return (
     <>
-      <h1>This is Cart</h1>
+      <CartTable />
+      <CartOrder />
     </>
   );
 };

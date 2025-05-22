@@ -11,3 +11,5 @@ ra16*.zip
 /**/.env.production
 /**/.env.development
 
+/**/venv
+/**/__pycache__
