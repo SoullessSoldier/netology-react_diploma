@@ -31,16 +31,16 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router>
+    <Router basename="/netology-react_diploma">
       <Routes>
         <Route path="/" element={<BasePage />}>
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="catalog" element={<Catalog />} />
-          <Route path="catalog/:id.html" element={<CatalogProductCard />} />
-          <Route path="contacts" element={<Contacts />} />
-          <Route path="personal-policy" element={<PersonalDataPolicy />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/catalog/:id.html" element={<CatalogProductCard />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/personal-policy" element={<PersonalDataPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
