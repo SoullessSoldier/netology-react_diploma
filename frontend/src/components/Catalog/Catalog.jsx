@@ -5,6 +5,7 @@ import CatalogCategories from "./CatalogCategories";
 import CatalogProductsList from "./CatalogProductsList";
 import CatalogSearch from "./CatalogSearch";
 import { resetCategory, setNavigateFromHeader } from "@/actions/actionCreators";
+import { ALL_CATEGORY_ID } from "@/config/configParams";
 import "./catalog.css";
 
 const Catalog = () => {
@@ -18,9 +19,13 @@ const Catalog = () => {
 
   useEffect(() => {
     if (isInternalTransition && !navigateFromHeader) {
-      dispatch(resetCategory({ categoryId: 99999, searchString: "", dispatch }));
+      dispatch(
+        resetCategory({ categoryId: ALL_CATEGORY_ID, searchString: "", dispatch })
+      );
     } else if (isInternalTransition && navigateFromHeader) {
-      dispatch(resetCategory({ categoryId: 99999, searchString, dispatch }));
+      dispatch(
+        resetCategory({ categoryId: ALL_CATEGORY_ID, searchString, dispatch })
+      );
       dispatch(setNavigateFromHeader(false));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

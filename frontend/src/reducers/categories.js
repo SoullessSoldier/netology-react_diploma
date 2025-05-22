@@ -4,15 +4,16 @@ import {
   LOAD_CATEGORIES_SUCCESS,
   SET_CURRENT_CATEGORY,
 } from "@/actions/actions";
+import { ALL_CATEGORY_ID } from "@/config/configParams";
 
 const initialState = {
   categories: [
     {
-      id: 99999,
+      id: ALL_CATEGORY_ID,
       title: "Все",
     },
   ],
-  currentCategory: 99999,
+  currentCategory: ALL_CATEGORY_ID,
   loading: false,
   error: null,
 };
