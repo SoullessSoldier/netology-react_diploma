@@ -5,7 +5,7 @@ import {
   categoriesUrl,
   itemsUrl,
   orderUrl,
-} from "@/backend_urls";
+} from "@/config/backendUrls";
 
 const TIMEOUT_MS = parseInt(import.meta.env.VITE_REQUEST_TIMEOUT_MS) || 10000;
 
