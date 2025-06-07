@@ -1,12 +1,12 @@
 import { put, takeLatest, retry } from "redux-saga/effects";
 import {
+  loadCategoriesRequest,
   loadCategoriesSuccess,
   loadCategoriesFailure,
   setCurrentCategory,
-  resetProducts,
-  loadProductsRequest,
-} from "@/actions/actionCreators";
-import { LOAD_CATEGORIES_REQUEST, RESET_CATEGORY } from "@/actions/actions";
+  resetCategory,
+} from "@/slices/categoriesSlice";
+import { resetProducts, loadProductsRequest } from "@/slices/productsSlice";
 import { fetchData } from "@/api/fetchData";
 
 import { MAX_ATTEMPTS, RETRY_DELAY_MS } from "@/config/configParams";
@@ -31,11 +31,11 @@ function* handleResetCategorySaga(action) {
 }
 
 function* watchLoadCategoriesSaga() {
-  yield takeLatest(LOAD_CATEGORIES_REQUEST, handleLoadCategoriesSaga);
+  yield takeLatest(loadCategoriesRequest, handleLoadCategoriesSaga);
 }
 
 function* watchResetCategorySaga() {
-  yield takeLatest(RESET_CATEGORY, handleResetCategorySaga);
+  yield takeLatest(resetCategory, handleResetCategorySaga);
 }
 
 export { watchLoadCategoriesSaga, watchResetCategorySaga };

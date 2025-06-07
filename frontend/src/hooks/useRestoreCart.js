@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { restoreCartFromStorage } from "@/actions/actionCreators";
+import { restoreCartFromStorage } from "@/slices/cartSlice";
 
 const useRestoreCart = () => {
   const dispatch = useDispatch();

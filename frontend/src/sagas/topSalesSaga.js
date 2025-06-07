@@ -1,6 +1,9 @@
 import { put, takeLatest, retry } from "redux-saga/effects";
-import { loadTopSalesSuccess, loadTopSalesFailure } from "@/actions/actionCreators";
-import { LOAD_TOPSALES_REQUEST } from "@/actions/actions";
+import {
+  loadTopSalesRequest,
+  loadTopSalesSuccess,
+  loadTopSalesFailure,
+} from "@/slices/topSalesSlice";
 import { fetchData } from "@/api/fetchData";
 
 import { MAX_ATTEMPTS, RETRY_DELAY_MS } from "@/config/configParams";
@@ -17,7 +20,7 @@ function* handleLoadTopSalesSaga() {
 }
 
 function* watchLoadTopSalesSaga() {
-  yield takeLatest(LOAD_TOPSALES_REQUEST, handleLoadTopSalesSaga);
+  yield takeLatest(loadTopSalesRequest, handleLoadTopSalesSaga);
 }
 
 export default watchLoadTopSalesSaga;

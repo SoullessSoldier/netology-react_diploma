@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { resetCategory } from "@/actions/actionCreators";
+import { resetCategory } from "@/slices/categoriesSlice";
 import Preloader from "@/components/Preloader/Preloader";
 import "./catalog.css";
 

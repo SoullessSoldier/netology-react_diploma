@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSearchString, setNavigateFromHeader } from "@/actions/actionCreators";
+import { updateSearchString, setNavigateFromHeader } from "@/slices/productsSlice";
 import "./header.css";
 
 const HeaderSearchWidget = () => {

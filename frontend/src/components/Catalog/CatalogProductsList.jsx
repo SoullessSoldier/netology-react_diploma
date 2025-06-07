@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import CatalogProductCard from "@/components/CatalogProductCard/CatalogProductCard";
 import Preloader from "@/components/Preloader/Preloader";
-import { loadProductsRequest } from "@/actions/actionCreators";
+import { loadProductsRequest } from "@/slices/productsSlice";
 import "./catalog.css";
 
 const CatalogProductsList = () => {

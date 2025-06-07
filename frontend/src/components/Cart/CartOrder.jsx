@@ -1,11 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  clearCart,
-  sendOrderRequest,
-  sendOrderFailure,
-  resetOrder,
-} from "@/actions/actionCreators";
+import { sendOrderRequest, sendOrderFailure, resetOrder } from "@/slices/orderSlice";
+import { clearCart } from "@/slices/cartSlice";
+
 import { isValidOrderData } from "@/utils/helperOrder";
 import { useEffect } from "react";
 import Preloader from "@/components/Preloader/Preloader";

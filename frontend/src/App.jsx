@@ -10,13 +10,13 @@ import Catalog from "@/components/Catalog/Catalog";
 import Contacts from "@/components/Contacts/Contacts";
 import CatalogProductCard from "@/components/Catalog/CatalogProductCard";
 import PersonalDataPolicy from "@/components/PersonalDataPolicy/PersonalDataPolicy";
-import {
-  loadTopSalesRequest,
-  loadCategoriesRequest,
-  loadProductsRequest,
-} from "@/actions/actionCreators";
+
 import useRestoreCart from "@/hooks/useRestoreCart";
 import "./App.css";
+
+import { loadTopSalesRequest } from "@/slices/topSalesSlice";
+import { loadCategoriesRequest } from "@/slices/categoriesSlice";
+import { loadProductsRequest } from "@/slices/productsSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +31,8 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router basename="/netology-react_diploma">
+    // <Router basename="/netology-react_diploma">
+    <Router>
       <Routes>
         <Route path="/" element={<BasePage />}>
           <Route index element={<Home />} />

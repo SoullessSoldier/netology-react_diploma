@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Preloader from "@/components/Preloader/Preloader";
-import { addToCart, loadProductItemRequest } from "@/actions/actionCreators";
+import { addToCart } from "@/slices/cartSlice";
+import { loadProductItemRequest } from "@/slices/productItemSlice";
 import "./catalog.css";
 
 const CatalogProductCard = () => {

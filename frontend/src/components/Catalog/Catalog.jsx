@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom";
 import CatalogCategories from "./CatalogCategories";
 import CatalogProductsList from "./CatalogProductsList";
 import CatalogSearch from "./CatalogSearch";
-import { resetCategory, setNavigateFromHeader } from "@/actions/actionCreators";
+import { resetCategory } from "@/slices/categoriesSlice";
+import { setNavigateFromHeader } from "@/slices/productsSlice";
 import { ALL_CATEGORY_ID } from "@/config/configParams";
 import "./catalog.css";
 

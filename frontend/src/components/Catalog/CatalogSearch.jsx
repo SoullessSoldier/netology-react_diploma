@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   loadProductsRequest,
   resetProducts,
-  resetCategory,
   updateSearchString,
-} from "@/actions/actionCreators";
+} from "@/slices/productsSlice";
+import { resetCategory } from "@/slices/categoriesSlice";
 import { ALL_CATEGORY_ID } from "@/config/configParams";
 import "./catalog.css";
 

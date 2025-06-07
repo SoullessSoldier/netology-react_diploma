@@ -1,9 +1,9 @@
 import { put, takeLatest, retry } from "redux-saga/effects";
 import {
+  loadProductItemRequest,
   loadProductItemSuccess,
   loadProductItemFailure,
-} from "@/actions/actionCreators";
-import { LOAD_PRODUCTITEM_REQUEST } from "@/actions/actions";
+} from "@/slices/productItemSlice";
 
 import { fetchData } from "@/api/fetchData";
 
@@ -29,7 +29,7 @@ function* handleLoadProductItemSaga(action) {
 }
 
 function* watchLoadProductItemSaga() {
-  yield takeLatest(LOAD_PRODUCTITEM_REQUEST, handleLoadProductItemSaga);
+  yield takeLatest(loadProductItemRequest, handleLoadProductItemSaga);
 }
 
 export default watchLoadProductItemSaga;
