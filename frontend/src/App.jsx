@@ -31,8 +31,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    // <Router basename="/netology-react_diploma">
-    <Router>
+    <Router basename="/netology-react_diploma">
       <Routes>
         <Route path="/" element={<BasePage />}>
           <Route index element={<Home />} />
