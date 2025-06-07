@@ -12,7 +12,7 @@ const CatalogCategories = () => {
 
   const handleCategoryClick = (event, categoryId) => {
     event.preventDefault();
-    dispatch(resetCategory({ categoryId, searchString, dispatch }));
+    dispatch(resetCategory({ categoryId, searchString }));
   };
 
   return (

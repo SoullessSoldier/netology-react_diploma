@@ -14,17 +14,17 @@ const productItemSlice = createSlice({
   name: "productItem",
   initialState,
   reducers: {
-    [loadProductItemRequest]: (state) => {
+    loadProductItemRequest: (state) => {
       return { ...state, loading: true };
     },
-    [loadProductItemRequest]: (state, action) => {
+    loadProductItemSuccess: (state, action) => {
       return {
         ...state,
         productItem: action.payload,
         loading: false,
       };
     },
-    [loadProductItemFailure]: (state, action) => {
+    loadProductItemFailure: (state, action) => {
       return { ...state, loading: false, error: action.payload };
     },
   },

@@ -23,10 +23,10 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    [loadProductsRequest]: (state) => {
+    loadProductsRequest: (state) => {
       return { ...state, loading: true, error: null };
     },
-    [loadProductsSuccess]: (state, action) => {
+    loadProductsSuccess: (state, action) => {
       return {
         ...state,
         products: [...state.products, ...action.payload],
@@ -35,16 +35,16 @@ const productsSlice = createSlice({
         showLoadMore: action.payload.length === PRODUCTS_PER_REQUEST,
       };
     },
-    [loadProductsFailure]: (state, action) => {
+    loadProductsFailure: (state, action) => {
       return { ...state, loading: false, error: action.payload };
     },
-    [resetProducts]: (state, action) => {
+    resetProducts: (state, action) => {
       return { ...initialState, searchString: action.payload || "" };
     },
-    [updateSearchString]: (state, action) => {
+    updateSearchString: (state, action) => {
       return { ...state, searchString: action.payload };
     },
-    [setNavigateFromHeader]: (state, action) => {
+    setNavigateFromHeader: (state, action) => {
       return { ...state, navigateFromHeader: action.payload };
     },
   },

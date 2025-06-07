@@ -23,20 +23,20 @@ const categoriesSlice = createSlice({
   name: "categories",
   initialState,
   reducers: {
-    [loadCategoriesRequest]: (state) => {
+    loadCategoriesRequest: (state) => {
       return { ...state, loading: true };
     },
-    [loadCategoriesSuccess]: (state, action) => {
+    loadCategoriesSuccess: (state, action) => {
       return {
         ...state,
         categories: [...initialState.categories, ...action.payload],
         loading: false,
       };
     },
-    [loadCategoriesFailure]: (state, action) => {
+    loadCategoriesFailure: (state, action) => {
       return { ...state, loading: false, error: action.payload };
     },
-    [setCurrentCategory]: (state, action) => {
+    setCurrentCategory: (state, action) => {
       return { ...state, loading: false, currentCategory: action.payload };
     },
   },

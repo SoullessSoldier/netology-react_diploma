@@ -14,7 +14,6 @@ function* handleSendOrderSaga(action) {
       mode: "order",
       body: action.payload,
     });
-    console.log("SAGA result", result);
     const output = !!result || "OK";
     yield put(sendOrderSuccess(output));
   } catch (error) {

@@ -14,18 +14,17 @@ const topSalesSlice = createSlice({
   name: "topSales",
   initialState,
   reducers: {
-    [loadTopSalesRequest]: (state) => {
+    loadTopSalesRequest: (state) => {
       return { ...state, loading: true };
     },
-    [loadTopSalesSuccess]: (state, action) => {
-      console.log("loadTopSalesSuccess action", action);
+    loadTopSalesSuccess: (state, action) => {
       return {
         ...state,
         topSales: action.payload,
         loading: false,
       };
     },
-    [loadTopSalesFailure]: (state, action) => {
+    loadTopSalesFailure: (state, action) => {
       return { ...state, loading: false, error: action.payload };
     },
   },

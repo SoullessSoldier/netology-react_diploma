@@ -21,11 +21,11 @@ const Catalog = () => {
   useEffect(() => {
     if (isInternalTransition && !navigateFromHeader) {
       dispatch(
-        resetCategory({ categoryId: ALL_CATEGORY_ID, searchString: "", dispatch })
+        resetCategory({ categoryId: ALL_CATEGORY_ID, searchString: "" })
       );
     } else if (isInternalTransition && navigateFromHeader) {
       dispatch(
-        resetCategory({ categoryId: ALL_CATEGORY_ID, searchString, dispatch })
+        resetCategory({ categoryId: ALL_CATEGORY_ID, searchString })
       );
       dispatch(setNavigateFromHeader(false));
     }

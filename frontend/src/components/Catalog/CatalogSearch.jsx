@@ -17,9 +17,7 @@ const CatalogSearch = () => {
     event.preventDefault();
     if (searchString.trim().length >= 3) {
       dispatch(resetProducts(searchString));
-      dispatch(
-        resetCategory({ categoryId: ALL_CATEGORY_ID, searchString, dispatch })
-      );
+      dispatch(resetCategory({ categoryId: ALL_CATEGORY_ID, searchString }));
     }
   };
 

@@ -15,20 +15,20 @@ const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    [sendOrderRequest]: (state) => {
+    sendOrderRequest: (state) => {
       return { ...state, loading: true };
     },
-    [sendOrderSuccess]: (state, action) => {
+    sendOrderSuccess: (state, action) => {
       return {
         ...state,
         response: action.payload,
         loading: false,
       };
     },
-    [sendOrderFailure]: (state, action) => {
+    sendOrderFailure: (state, action) => {
       return { ...state, loading: false, error: action.payload };
     },
-    [resetOrder]: () => {
+    resetOrder: () => {
       return { ...initialState };
     },
   },
