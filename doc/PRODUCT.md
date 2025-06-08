@@ -109,6 +109,15 @@ ESLint & Prettier old stuff:
 Используются редьюсеры и саги, для каждой задачи свои.   
 В проекте есть .env-файл, образец в *.env.sample.  
 
+В отдельной ветке refactor_redux-persist поработал с **redux-persist**.  
+Впечатление неоднозначное, для большого проекта это может быть применимо и полезно, но для старта маленького проекта много неявных действий.   
+Не удалось применить трансформацию в persistConfig (хотел сохранять только одну переменную из стейта), решил через whitelist. 
+
+Материалы:  
+- https://dev.to/snigdho611/setting-up-redux-persist-with-redux-toolkit-in-react-js-30kn
+- https://blog.logrocket.com/persist-state-redux-persist-redux-toolkit-react/
+
+
 ### Общие вопросы
 
 #### Иконки для сайта
