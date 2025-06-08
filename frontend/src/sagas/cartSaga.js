@@ -2,7 +2,7 @@ import { select, takeEvery } from "redux-saga/effects";
 
 import { addToCart, removeFromCart, clearCart } from "@/slices/cartSlice";
 
-import { writeToLocalStorage } from "@/utils/helperLocalStorage";
+//import { writeToLocalStorage } from "@/utils/helperLocalStorage";
 
 function* handleSyncCartToLocalStorage(action) {
   const { type } = action;
@@ -12,10 +12,10 @@ function* handleSyncCartToLocalStorage(action) {
     case removeFromCart:
       // eslint-disable-next-line no-case-declarations
       const cartItems = yield select((state) => state.cart.cartItems);
-      writeToLocalStorage(cartItems);
+      //writeToLocalStorage(cartItems);
       break;
     case clearCart:
-      writeToLocalStorage([]);
+      //writeToLocalStorage([]);
       break;
     default:
       break;

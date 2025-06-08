@@ -11,7 +11,7 @@ import Contacts from "@/components/Contacts/Contacts";
 import CatalogProductCard from "@/components/Catalog/CatalogProductCard";
 import PersonalDataPolicy from "@/components/PersonalDataPolicy/PersonalDataPolicy";
 
-import useRestoreCart from "@/hooks/useRestoreCart";
+//import useRestoreCart from "@/hooks/useRestoreCart";
 import "./App.css";
 
 import { loadTopSalesRequest } from "@/slices/topSalesSlice";
@@ -21,7 +21,7 @@ import { loadProductsRequest } from "@/slices/productsSlice";
 function App() {
   const dispatch = useDispatch();
 
-  useRestoreCart();
+  //useRestoreCart();
 
   useEffect(() => {
     // Производим загрузку данных один раз при загрузке приложения
@@ -31,7 +31,8 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router basename="/netology-react_diploma">
+    // <Router basename="/netology-react_diploma">
+    <Router>
       <Routes>
         <Route path="/" element={<BasePage />}>
           <Route index element={<Home />} />
